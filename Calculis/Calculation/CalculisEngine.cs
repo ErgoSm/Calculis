@@ -14,36 +14,37 @@ namespace Calculis.Core.Calculation
         ///<summary>
         ///Initializes a new instance of calculation engine that carry out real-time calculations based on items values
         ///</summary>
-        ///<param name="Items">Collection of value contained objects inherited of IValueItem</param>
-        ///<param name="TimeProvider">Provider of time for control of iteration in temporal functions;\nBy default is used standard provider based on System.DateTime</param>
-        public CalculisEngine(IEnumerable<IValueItem> Items, TimeProvider TimeProvider = null)
+        ///<param name="items">Collection of value contained objects inherited of IValueItem</param>
+        ///<param name="timeProvider">Provider of time for control of iteration in temporal functions;\nBy default is used standard provider based on System.DateTime</param>
+        public CalculisEngine(IEnumerable<IValueItem> items, TimeProvider timeProvider = null)
         {
-            _timeProvider = TimeProvider ?? new DefaultTimeProvider();
-            _itemsManager = new ItemsManager(Items);
+            _timeProvider = timeProvider ?? new DefaultTimeProvider();
+            _itemsManager = new ItemsManager(items);
         }
 
         ///<summary>
         ///Adds new IValueItem object with formulary expression
         ///</summary>
-        ///<param name="Name">Name of the new object</param>
-        ///<param name="Expression">Formulary expression that will be used for calculation the value</param>
-        ///<param name="Culture">Object CultureInfo specifies the culture for Expression</param>
+        ///<param name="name">Name of the new object</param>
+        ///<param name="expression">Formulary expression that will be used for calculation the value</param>
+        ///<param name="culture">Object CultureInfo specifies the culture for Expression</param>
         ///<returns>CalculatingItem object with the result of calculation in Value field</returns>
-        public CalculatingItem Add(string Name, string Expression, CultureInfo Culture = null)
+        ///<exception>ArgumentNullException</exception>
+        public CalculatingItem Add(string name, string expression, CultureInfo culture = null)
         {
-            return _itemsManager.Create(Name, Expression, Culture ?? CultureInfo.CurrentCulture);
+            return _itemsManager.Create(name, expression, culture ?? CultureInfo.CurrentCulture);
         }
 
         ///<summary>
         ///Initializes cash of item based on temporal function
         ///</summary>
-        ///<param name="Name">Name of the initialized object</param>
-        ///<param name="CashValues">Content for initialization of cash</param>
-        ///<exception>InvalidOperationException</exception>
+        ///<param name="name">Name of the initialized object</param>
+        ///<param name="cashValues">Content for initialization of cash</param>
         ///<exception>ArgumentException</exception>
-        public void Initialize(string Name, IEnumerable<IValue> CashValues)
+        ///<exception>InvalidOperationException</exception>
+        public void Initialize(string name, IEnumerable<IValue> cashValues)
         {
-            var item = _itemsManager.GetItem(Name);
+            var item = _itemsManager.GetItem(name);
 
             var calc = item as CalculatingItem;
 
@@ -52,26 +53,29 @@ namespace Calculis.Core.Calculation
                 throw new InvalidOperationException("Non temporal function cannot be initialized!");
             }
 
-            calc.Initialize(CashValues);
+            calc.Initialize(cashValues);
         }
 
         ///<summary>
         ///Returns IValueItem contained in Calculis instance
         ///</summary>
-        ///<param name="Name">Name of the object</param>
+        ///<param name="name">Name of the object</param>
         ///<returns>The object implemented IValueItem</returns>
-        public IValueItem GetItem(string Name)
+        ///<exception>ArgumentNullException</exception>
+        ///<exception>ArgumentException</exception>
+        ///<exception>InvalidOperationException</exception>
+        public IValueItem GetItem(string name)
         {
-            return _itemsManager.GetItem(Name); ;
+            return _itemsManager.GetItem(name); ;
         }
 
         ///<summary>
         ///Pluggs-in an assembly containing additional functions 
         ///</summary>
-        ///<param name="AssemblyName">Name of assembly</param>
-        public void Register(string AssemblyName)
+        ///<param name="assemblyName">Name of assembly</param>
+        public void Register(string assemblyName)
         {
-            FunctionManager.Register(AssemblyName);
+            FunctionManager.Register(assemblyName);
         }
 
         ///<summary>
