@@ -7,7 +7,7 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>$(AssemblyName)</PackageId>
     <Authors>ErgoSm</Authors>
-    <Version>0.1.7</Version>
+    <Version>0.1.8</Version>
     <Product>$(AssemblyName)</Product>
     <Description>Core classes of Calculis</Description>
     <PackageLicenseExpression> GPL-3.0-only</PackageLicenseExpression>

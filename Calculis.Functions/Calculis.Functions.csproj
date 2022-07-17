@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>Calculis</PackageId>
-    <Version>0.1.7</Version>
+    <Version>0.1.8</Version>
     <Authors>ErgoSm</Authors>
     <Product>Calculis</Product>
     <Description>Micro-framework that provides the user with the ability to organize calculations according to mathematical expressions, including the time aspect of values.</Description>
