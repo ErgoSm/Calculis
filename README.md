@@ -13,7 +13,7 @@ Calculis is a micro-framework that provides the user with the ability to organiz
 ## Getting started
 First, install Calculis from the package manager console:
 ```
-PM> Install-Package Calculis -Version 0.1.7
+PM> Install-Package Calculis -Version 0.1.8
 ```
 Calculus works with objects implementing the IValueItem interface. Implement the interface in your program:
 ```csharp
