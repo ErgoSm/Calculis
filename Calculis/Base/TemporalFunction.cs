@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -17,7 +17,7 @@ namespace Calculis.Core
         protected DateTimeOffset Timestamp { get; private set; }
         protected double _previousValue { get; private set; }
 
-        public TemporalFunction(IList<IValueItem> args) : base(args)
+        protected TemporalFunction(IList<IValueItem> args) : base(args)
         {
             Initialize();
         }

@@ -2,6 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <AnalysisLevel>latest-recommended</AnalysisLevel>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <RepositoryUrl>https://github.com/ErgoSm/Calculis</RepositoryUrl>
     <Copyright></Copyright>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>

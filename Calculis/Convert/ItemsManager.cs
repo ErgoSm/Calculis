@@ -1,4 +1,4 @@
-﻿using Calculis.Core.Auxilliary;
+using Calculis.Core.Auxilliary;
 using Calculis.Core.Calculation;
 using System;
 using System.Collections.Generic;
@@ -31,7 +31,7 @@ namespace Calculis.Core.Convert
 
         internal CalculatingItem Create(string name, string expression, CultureInfo culture)
         {
-            if (name == null) throw new ArgumentNullException("name");
+            if (name == null) throw new ArgumentNullException(nameof(name));
             if (_itemsNames.ContainsKey(name)) throw new ArgumentException($"The name {name} has already used!");
 
             _culture = culture;
@@ -59,7 +59,7 @@ namespace Calculis.Core.Convert
 
         internal IValueItem GetItem(string name)
         {
-            return _items.TryGetValue(_itemsNames[name], out var item) ? item : throw new NullReferenceException($"Item {name} does not exist!");
+            return _items.TryGetValue(_itemsNames[name], out var item) ? item : throw new KeyNotFoundException($"Item {name} does not exist!");
         }
 
         internal void Update(DateTime timestamp)
@@ -83,7 +83,7 @@ namespace Calculis.Core.Convert
             {
                 var arg = GetArg(argString, _items.ContainsKey, (key) => _items[key]) ??
                           GetArg(argString, _aliasFunctions.ContainsKey, (key) => _aliasFunctions[key].Item) ??
-                          GetArg(argString, isDouble, (expr) => new ConstantItem(double.Parse(expr, NumberStyles.Float, _culture.NumberFormat)));
+                          GetArg(argString, IsDouble, (expr) => new ConstantItem(double.Parse(expr, NumberStyles.Float, _culture.NumberFormat)));
 
                 args.Add(arg ?? throw new ArgumentOutOfRangeException(argString));
             }
@@ -91,7 +91,7 @@ namespace Calculis.Core.Convert
             return args;
         }
 
-        private bool isDouble(string expression)
+        private bool IsDouble(string expression)
         {
             return double.TryParse(expression, NumberStyles.Float, _culture.NumberFormat, out double result);
         }

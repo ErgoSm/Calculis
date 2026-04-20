@@ -1,10 +1,10 @@
-﻿namespace Calculis.Core.Convert
+namespace Calculis.Core.Convert
 {
-    class ItemInfo
+    internal class ItemInfo
     {
-        public IValueItem Item { get; set; }
-        public string Alias { get; set; }
-        public string OriginalExpression { get; set; }
-        public string ReplacedExpression { get; set; }
+        internal IValueItem Item { get; set; }
+        internal string Alias { get; set; }
+        internal string OriginalExpression { get; set; }
+        internal string ReplacedExpression { get; set; }
     }
 }
