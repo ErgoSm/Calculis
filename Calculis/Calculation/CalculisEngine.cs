@@ -1,8 +1,8 @@
-﻿using Calculis.Core.Convert;
-using System.Collections.Generic;
-using Calculis.Core.Auxilliary;
-using System.Globalization;
 using System;
+using System.Collections.Generic;
+using System.Globalization;
+using Calculis.Core.Auxilliary;
+using Calculis.Core.Convert;
 
 namespace Calculis.Core.Calculation
 {
@@ -66,7 +66,7 @@ namespace Calculis.Core.Calculation
         ///<exception>InvalidOperationException</exception>
         public IValueItem GetItem(string name)
         {
-            return _itemsManager.GetItem(name); ;
+            return _itemsManager.GetItem(name);
         }
 
         ///<summary>
@@ -96,7 +96,7 @@ namespace Calculis.Core.Calculation
         {
             if (Expression == null)
             {
-                throw new ArgumentNullException(Expression);
+                throw new ArgumentNullException(nameof(Expression));
             }
 
             var position = Position ?? Expression.Length - 1;

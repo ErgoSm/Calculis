@@ -1,6 +1,6 @@
-﻿using Calculis.Core.Auxilliary;
 using System;
 using System.Collections.Generic;
+using Calculis.Core.Auxilliary;
 
 namespace Calculis.Core
 {
@@ -8,7 +8,7 @@ namespace Calculis.Core
     {
         internal bool IsTemporal => _function is TemporalFunction;
 
-        private FunctionBase _function;
+        private readonly FunctionBase _function;
 
         public CalculatingItem(FunctionBase function)
         {
