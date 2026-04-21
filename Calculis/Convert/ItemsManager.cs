@@ -59,7 +59,10 @@ namespace Calculis.Core.Convert
 
         internal IValueItem GetItem(string name)
         {
-            return _items.TryGetValue(_itemsNames[name], out var item) ? item : throw new KeyNotFoundException($"Item {name} does not exist!");
+            if (!_itemsNames.TryGetValue(name, out var key) || !_items.TryGetValue(key, out var item))
+                throw new KeyNotFoundException($"Item {name} does not exist!");
+
+            return item;
         }
 
         internal void Update(DateTime timestamp)
